@@ -5,7 +5,6 @@ from aiogram import Router, types
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import CommandStart
 
-from src.bot.filters.register_filter import RegisterFilter
 from src.db.database import Database
 from src.language.translator import LocalizedTranslator
 
