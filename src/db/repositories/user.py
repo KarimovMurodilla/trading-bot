@@ -47,8 +47,8 @@ class UserRepo(Repository[User]):
             )
         )
 
-    async def get_role(self, user_id: int) -> Role:
+    async def get_me(self, user_id: int) -> User:
         """Get user role by id."""
         return await self.session.scalar(
-            select(User.role).where(User.user_id == user_id).limit(1)
+            select(User).where(User.user_id == user_id).limit(1)
         )
