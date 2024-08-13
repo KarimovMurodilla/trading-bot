@@ -46,6 +46,7 @@ class UserRepo(Repository[User]):
                 role=role,
             )
         )
+        await self.session.commit()
 
     async def get_me(self, user_id: int) -> User:
         """Get user role by id."""
