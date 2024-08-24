@@ -11,7 +11,7 @@ from src.language.translator import LocalizedTranslator
 start_router = Router(name='start')
 
 
-@start_router.message(CommandStart(), RegisterFilter())
+@start_router.message(CommandStart())
 async def start_handler(message: types.Message, db: Database, translator: LocalizedTranslator, state: FSMContext):
     """Start command handler."""
     await state.clear()
