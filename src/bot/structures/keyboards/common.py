@@ -3,8 +3,8 @@ from aiogram import types
 
 def show_keyboard():
     kb = [
-        [types.KeyboardButton(text="Button 1")],
-        [types.KeyboardButton(text="Button 2")],
+        [types.KeyboardButton(text="BTCUSDT")],
+        [types.KeyboardButton(text="ETHUSDT")],
     ]
     keyboard = types.ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
 
