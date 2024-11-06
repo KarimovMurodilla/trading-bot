@@ -8,10 +8,9 @@ session = HTTP(
     api_secret=conf.BYBIT_API_SECRET,
 )
 
-PAIR = 'BTCUSDT'
 
-async def get_price():
-    ticker = session.get_tickers(category="linear", symbol=PAIR)
+async def get_price(pair: str):
+    ticker = session.get_tickers(category="linear", symbol=pair)
     return float(ticker['result']['list'][0]['lastPrice'])
 
 async def place_order(pair: str):
@@ -24,21 +23,16 @@ async def place_order(pair: str):
     )
     return order['result']['orderId'], float(order['result']['price'])
 
-async def close_order(order_id):
-    session.cancel_order(category="linear", symbol=PAIR, orderId=order_id)
+async def close_order(pair, order_id):
+    session.cancel_order(category="linear", symbol=pair, orderId=order_id)
 
-async def check_profit(order_price, order_id):
+async def check_profit(pair, order_price, order_id):
     while True:
-        current_price = await get_price()
+        current_price = await get_price(pair)
         profit_percentage = (current_price - order_price) / order_price * 100
 
         if profit_percentage >= 0.1:
-            await close_order(order_id)
+            await close_order(pair, order_id)
             return profit_percentage
 
         await asyncio.sleep(10)
-
-
-
-res = get_price()
-print(res)

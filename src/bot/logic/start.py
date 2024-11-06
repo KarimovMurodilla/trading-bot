@@ -26,7 +26,7 @@ async def start_handler(message: types.Message, db: Database, translator: Locali
 async def start_handler(message: types.Message, db: Database, translator: LocalizedTranslator, state: FSMContext):
     order_id, order_price = await place_order(message.text)
     await message.answer("Позиция открыта")
-    task = asyncio.create_task(check_profit(order_price, order_id))
+    task = asyncio.create_task(check_profit(message.text, order_price, order_id))
 
     result = await task
     if result:
