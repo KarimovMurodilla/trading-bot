@@ -87,6 +87,9 @@ class Configuration:
     SECRET_KEY: str = getenv('SECRET_KEY')
     ADMIN_LOGIN = getenv('ADMIN_LOGIN')
     ADMIN_PASSWORD = getenv('ADMIN_PASSWORD')
+
+    BYBIT_API_KEY = getenv("BYBIT_API_KEY")
+    BYBIT_API_SECRET = getenv("BYBIT_API_SECRET")
     
 
 conf = Configuration()
